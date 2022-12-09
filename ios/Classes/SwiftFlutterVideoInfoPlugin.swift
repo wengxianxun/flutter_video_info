@@ -44,6 +44,7 @@ public class SwiftFlutterVideoInfoPlugin: NSObject, FlutterPlugin {
     let tracks = asset.tracks(withMediaType: .video)
     let fps = tracks.first?.nominalFrameRate
     let size = tracks.first?.naturalSize
+    let bitrate = tracks.first?.estimatedDataRate
     let mimetype = mimeTypeForPath(path: path)
     let orientation = asset.orientation
 
@@ -75,6 +76,7 @@ public class SwiftFlutterVideoInfoPlugin: NSObject, FlutterPlugin {
     jsonObj["filesize"] = fileSize
     jsonObj["orientation"] = orientation
     jsonObj["isfileexist"] = isFileExist
+    jsonObj["bitrate"] = bitrate
 
     do {
       let jsonData = try JSONSerialization.data(withJSONObject: jsonObj)

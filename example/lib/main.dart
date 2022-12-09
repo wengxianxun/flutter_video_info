@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_video_info/flutter_video_info.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -45,6 +46,8 @@ class _MyAppState extends State<MyApp> {
       info +=
           "\norientation=> ${a.orientation}\ndate=> ${a.date}\nframerate=> ${a.framerate}";
       info += "\nlocation=> ${a.location}";
+
+      info += "\nbitrate=> ${a.bitrate}";
     });
   }
 

@@ -59,7 +59,7 @@ public class FlutterVideoInfoPlugin implements FlutterPlugin, MethodCallHandler 
     String getVidInfo(String path) {
         File file = new File(path);
         boolean isFileExists=file.exists();
-        String author,dateString,mimeType,location,frameRateStr,widthStr,heightStr,durationStr,orientation;
+        String author,dateString,mimeType,location,frameRateStr,widthStr,heightStr,durationStr,orientation,bitRate;
         double filesize;
         if(isFileExists){
             MediaMetadataRetriever mediaRetriever = new MediaMetadataRetriever();
@@ -87,6 +87,7 @@ public class FlutterVideoInfoPlugin implements FlutterPlugin, MethodCallHandler 
             durationStr = getData(MediaMetadataRetriever.METADATA_KEY_DURATION, mediaRetriever);
             widthStr = getData(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH, mediaRetriever);
             heightStr = getData(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT, mediaRetriever);
+            bitRate = getData(MediaMetadataRetriever.METADATA_KEY_BITRATE, mediaRetriever);
             filesize = file.length();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 orientation = getData(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION, mediaRetriever);
@@ -110,6 +111,7 @@ public class FlutterVideoInfoPlugin implements FlutterPlugin, MethodCallHandler 
             heightStr="";
             durationStr="";
             orientation="";
+            bitRate="";
             filesize=0;
         }
 
@@ -127,6 +129,7 @@ public class FlutterVideoInfoPlugin implements FlutterPlugin, MethodCallHandler 
             json.put("filesize", filesize);
             json.put("orientation", orientation);
             json.put("isfileexist",isFileExists);
+            json.put("bitrate",bitRate);
         } catch (Exception e) {
             e.printStackTrace();
         }

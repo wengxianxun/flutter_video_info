@@ -2,9 +2,10 @@ library flutter_video_info;
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer' as developer;
+
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
-import 'dart:developer' as developer;
 
 class FlutterVideoInfo {
   static const MethodChannel _channel =
@@ -43,6 +44,9 @@ class VideoData {
   /// double
   double? framerate;
 
+  /// string
+  String? bitrate;
+
   /// int
   int? width;
 
@@ -75,6 +79,7 @@ class VideoData {
     this.orientation,
     this.filesize,
     this.duration,
+    this.bitrate,
   });
 
   VideoData.fromJson(Map<String, dynamic> json) {
@@ -97,5 +102,6 @@ class VideoData {
     filesize = json['filesize'];
     duration =
         json["isfileexist"] ? double.tryParse('${json['duration']}') : null;
+    bitrate = json['bitrate'];
   }
 }
