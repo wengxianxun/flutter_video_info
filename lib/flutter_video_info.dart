@@ -44,8 +44,8 @@ class VideoData {
   /// double
   double? framerate;
 
-  /// string
-  String? bitrate;
+  /// double
+  double? bitrate;
 
   /// int
   int? width;
