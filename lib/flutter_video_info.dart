@@ -102,6 +102,6 @@ class VideoData {
     filesize = json['filesize'];
     duration =
         json["isfileexist"] ? double.tryParse('${json['duration']}') : null;
-    bitrate = double.tryParse("${json["framerate"]}");
+    bitrate = double.tryParse("${json["bitrate"]}");
   }
 }
